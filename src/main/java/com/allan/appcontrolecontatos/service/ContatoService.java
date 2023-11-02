@@ -1,27 +1,46 @@
 package com.allan.appcontrolecontatos.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.allan.appcontrolecontatos.entity.Contato;
+import com.allan.appcontrolecontatos.repository.ContatoRepository;
+import com.allan.appcontrolecontatos.service.exception.ResourceNotFoundException;
 import com.allan.appcontrolecontatos.service.interfaces.ContatoServiceInterface;
 
 public class ContatoService implements ContatoServiceInterface {
 
+	@Autowired
+	private ContatoRepository contatoRepository;
+
 	@Override
 	public Contato findById(Long idContato) {
-		// TODO Auto-generated method stub
-		return null;
+		return returnContatoFromDataBase(idContato);
 	}
 
 	@Override
 	public Contato update(Long idContato, Contato contatoRequest) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Contato contato = returnContatoFromDataBase(idContato);
+
+		updateContatoData(contatoRequest, contato);
+
+		return contatoRepository.save(contato);
 	}
 
 	@Override
 	public void delete(Long idContato) {
-		// TODO Auto-generated method stub
-		
+		contatoRepository.delete(returnContatoFromDataBase(idContato));
+
 	}
-	
-	
+
+	private Contato returnContatoFromDataBase(Long idContato) {
+		return contatoRepository.findById(idContato)
+				.orElseThrow(() -> new ResourceNotFoundException("Contato não encontrada no banco de dados"));
+	}
+
+	private void updateContatoData(Contato contatoRequest, Contato contatoDataBase) {
+		contatoDataBase.setContato(contatoRequest.getContato());
+		contatoDataBase.setTipoContato(contatoRequest.getTipoContato());
+	}
+
 }
