@@ -34,8 +34,9 @@ public class PessoaService implements PessoaServiceInterface {
 
 	@Override
 	public PessoaResponseDTO findByIdMalaDireta(Long idPessoa) {
+	
 		Pessoa pessoa = returnPessoaFromDataBase(idPessoa);
-
+		
 		return convertFromPessoaEntityToPessoaMalaDiretaDTO(pessoa);
 	}
 

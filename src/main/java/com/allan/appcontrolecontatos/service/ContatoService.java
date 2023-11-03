@@ -32,7 +32,6 @@ public class ContatoService implements ContatoServiceInterface {
 	@Override
 	public void delete(Long idContato) {
 		contatoRepository.delete(returnContatoFromDataBase(idContato));
-
 	}
 
 	private Contato returnContatoFromDataBase(Long idContato) {

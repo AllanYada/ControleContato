@@ -51,7 +51,6 @@ public class PessoaController {
 	@Operation(summary = "Busca uma lista de contatos de uma pessoa")
 	@GetMapping(value = "/{idpessoa}/contatos")
 	public ResponseEntity<List<Contato>> findContatosByPessoa(@PathVariable(value = "idpessoa") Long idPessoa) {
-
 		return ResponseEntity.ok().body(pessoaService.findContatosByPessoa(idPessoa));
 	}
 
@@ -88,10 +87,14 @@ public class PessoaController {
 
 		Pessoa pessoa = pessoaService.addContato(idPessoa, contatoRequest);
 
-		URI uri = uriBuilder.path("/contatos/{id}")
-				.buildAndExpand(pessoa.getContatos().get(pessoa.getContatos().size() - 1).getId()).toUri();
+		URI uri = uriBuilder.path("/contatos/{id}").buildAndExpand(retornaIdContatoAdicionado(pessoa)).toUri();
 
 		return ResponseEntity.created(uri).body(pessoa);
+	}
+	
+	private Long retornaIdContatoAdicionado(Pessoa pessoa) {
+		List<Contato> pessoaContatos = pessoa.getContatos();
+		return pessoaContatos.get(pessoaContatos.size()-1).getId();
 	}
 
 }

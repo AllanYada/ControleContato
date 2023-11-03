@@ -1,3 +1,14 @@
 package com.allan.appcontrolecontatos.dto;
 
-public record PessoaResponseDTO(Long idPessoa, String nome, String malaDireta) {}
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public record PessoaResponseDTO(
+		
+		@JsonProperty(value = "id")
+		Long id,
+		
+		@JsonProperty(value = "nome")
+		String nome, 
+		
+		@JsonProperty(value = "MalaDireta")
+		String malaDireta) {}

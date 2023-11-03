@@ -23,7 +23,7 @@ public class ContatoController {
 	@Autowired
 	private ContatoService contatoService;
 
-	@Operation(summary = "Busca um contato por id")
+	@Operation(summary = "Busca um contato por id") 
 	@GetMapping(value = "/{idcontato}")
 	public ResponseEntity<Contato> findById(@PathVariable(value = "idcontato") Long idContato) {
 		return ResponseEntity.ok().body(contatoService.findById(idContato));
@@ -40,7 +40,6 @@ public class ContatoController {
 	@Operation(summary = "Deleta um contato por id")
 	@DeleteMapping(value = "/{idcontato}")
 	public ResponseEntity<Void> delete(@PathVariable(value = "idcontato") Long idContato) {
-
 		contatoService.delete(idContato);
 		return ResponseEntity.noContent().build();
 	}

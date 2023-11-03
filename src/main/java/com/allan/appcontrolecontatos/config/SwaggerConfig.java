@@ -16,7 +16,7 @@ public class SwaggerConfig {
     public GroupedOpenApi publicApi() {
 
         return GroupedOpenApi.builder()
-                .group("PessoasAPI")
+                .group("Controle de Contatos")
                 .pathsToMatch("/**")
                 .build();
 
@@ -26,8 +26,8 @@ public class SwaggerConfig {
     public OpenAPI publicAPISettings() {
 
         return new OpenAPI()
-                .info(new Info().title("PessoasAPI")
-                        .description("Sistema de controle de contato.")
+                .info(new Info().title("Controle de Contatos")
+                        .description("Sistema de controle de contatos.")
                         .version("v0.0.1")
                         .license(new License().name("Spring Doc").url("http://springdoc.org")))
                

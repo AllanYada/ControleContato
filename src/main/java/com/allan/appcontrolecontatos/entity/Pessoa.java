@@ -52,10 +52,6 @@ public class Pessoa {
 		this.uf = uf;
 	}
 
-	public void addContato(Contato contato) {
-		this.contatos.add(contato);
-	}
-
 	public Long getId() {
 		return id;
 	}
