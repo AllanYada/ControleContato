@@ -1,12 +1,14 @@
 package com.allan.appcontrolecontatos.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.allan.appcontrolecontatos.entity.Contato;
 import com.allan.appcontrolecontatos.repository.ContatoRepository;
 import com.allan.appcontrolecontatos.service.exception.ResourceNotFoundException;
 import com.allan.appcontrolecontatos.service.interfaces.ContatoServiceInterface;
 
+@Service
 public class ContatoService implements ContatoServiceInterface {
 
 	@Autowired
@@ -19,7 +21,7 @@ public class ContatoService implements ContatoServiceInterface {
 
 	@Override
 	public Contato update(Long idContato, Contato contatoRequest) {
-		
+
 		Contato contato = returnContatoFromDataBase(idContato);
 
 		updateContatoData(contatoRequest, contato);
@@ -35,7 +37,7 @@ public class ContatoService implements ContatoServiceInterface {
 
 	private Contato returnContatoFromDataBase(Long idContato) {
 		return contatoRepository.findById(idContato)
-				.orElseThrow(() -> new ResourceNotFoundException("Contato não encontrada no banco de dados"));
+				.orElseThrow(() -> new ResourceNotFoundException("Contato não encontrado no banco de dados"));
 	}
 
 	private void updateContatoData(Contato contatoRequest, Contato contatoDataBase) {

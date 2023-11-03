@@ -19,28 +19,28 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping(value = "/contatos")
 public class ContatoController {
-	
+
 	@Autowired
 	private ContatoService contatoService;
-	
+
 	@Operation(summary = "Busca um contato por id")
 	@GetMapping(value = "/{idcontato}")
-	public ResponseEntity<Contato> findById(@PathVariable(value="idcontato") Long idContato) {
+	public ResponseEntity<Contato> findById(@PathVariable(value = "idcontato") Long idContato) {
 		return ResponseEntity.ok().body(contatoService.findById(idContato));
 	}
-	
+
 	@Operation(summary = "Atualiza um contato no sistema")
 	@PutMapping(value = "/{idcontato}")
 	public ResponseEntity<Contato> update(@PathVariable(value = "idcontato") Long idContato,
-			                                         @RequestBody @Valid Contato contatoRequest) {
-		
+			@RequestBody @Valid Contato contatoRequest) {
+
 		return ResponseEntity.ok().body(contatoService.update(idContato, contatoRequest));
 	}
-	
+
 	@Operation(summary = "Deleta um contato por id")
 	@DeleteMapping(value = "/{idcontato}")
 	public ResponseEntity<Void> delete(@PathVariable(value = "idcontato") Long idContato) {
-		
+
 		contatoService.delete(idContato);
 		return ResponseEntity.noContent().build();
 	}

@@ -11,7 +11,7 @@ import com.allan.appcontrolecontatos.entity.Contato;
 
 @Repository
 public interface ContatoRepository extends JpaRepository<Contato, Long> {
-	
+
 	@Query("SELECT c FROM Contato c where c.pessoa.id = :idPessoa")
 	List<Contato> findContatosByPessoaId(@Param(value = "idPessoa") Long idPessoa);
 

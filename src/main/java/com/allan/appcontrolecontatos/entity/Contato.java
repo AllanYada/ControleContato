@@ -21,28 +21,28 @@ public class Contato {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotNull
 	@Column(name = "tipo_contato", nullable = false)
 	private Integer tipoContato;
-	
+
 	@NotBlank
 	@Column(name = "contato", nullable = false)
 	private String contato;
-	
+
 	@JsonIgnore
 	@ManyToOne
 	private Pessoa pessoa;
-	
+
 	public Contato() {
-		
+
 	}
 
 	public Contato(Integer tipoContato, String contato) {
 		this.tipoContato = tipoContato;
 		this.contato = contato;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -91,6 +91,5 @@ public class Contato {
 		Contato other = (Contato) obj;
 		return Objects.equals(id, other.id);
 	}
-	
 
 }
